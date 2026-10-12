@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nimatoulaye Sow for President</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Yellowtail&family=Archivo:wght@800&display=swap">
+<style>
+  html, body { margin: 0; background: #0d0b11; }
+  main { max-width: 540px; margin: 0 auto; padding: 16px; }
+  img { display: block; width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<main>
+  <img id="flyer" alt="Nimatoulaye Sow for Student Council President. Scan the QR code to share your ideas.">
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script>
+  // Paste the Google Form link here
+  const FORM_URL = "https://forms.gle/PASTE-YOUR-LINK";
+
+  function qr(value, size) {
+    return new QRious({ value, size, level: "M", background: "#ffffff", foreground: "#0d0b11", padding: 0 }).canvas;
+  }
+
+  function star(ctx, x, y, r) {
+    ctx.strokeStyle = "#b996ff";
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const a = -Math.PI / 2 + i * 4 * Math.PI / 5;
+      const px = x + r * Math.cos(a), py = y + r * Math.sin(a);
+      i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+
+  async function draw() {
+    const base = new Image();
+    base.src = "flyer.jpg";
+    await base.decode();
+    try {
+      await Promise.all([
+        document.fonts.load("120px Anton"),
+        document.fonts.load("76px Yellowtail"),
+        document.fonts.load("800 30px Archivo"),
+      ]);
+    } catch (e) {}
+
+    const W = 1080, H0 = 1335, band = 470, H = H0 + band;
+    const c = document.createElement("canvas");
+    c.width = W; c.height = H;
+    const x = c.getContext("2d");
+
+    // original flyer
+    x.drawImage(base, 0, 0, W, H0);
+
+    // bottom strip
+    x.fillStyle = "#0d0b11"; x.fillRect(0, H0, W, band);
+    x.fillStyle = "#b996ff"; x.fillRect(0, H0, W, 8);
+    x.fillStyle = "#7b3fe4"; x.fillRect(0, H0 + 8, W, 4);
+    x.fillStyle = "#b996ff"; x.fillRect(0, H - 10, W, 10);
+
+    // QR code
+    const qs = 330, qx = W - qs - 90, qy = H0 + 60;
+    x.fillStyle = "#ffffff";
+    x.beginPath(); x.roundRect(qx - 20, qy - 20, qs + 40, qs + 40, 22); x.fill();
+    x.strokeStyle = "#b996ff"; x.lineWidth = 6; x.stroke();
+    x.drawImage(qr(FORM_URL, qs * 2), qx, qy, qs, qs);
+
+    // text
+    x.fillStyle = "#ffffff"; x.font = "120px Anton";
+    x.fillText("GOT IDEAS?", 60, H0 + 170);
+    x.fillStyle = "#b996ff"; x.font = "76px Yellowtail";
+    x.fillText("Drop them here", 66, H0 + 255);
+    x.fillStyle = "#ffffff"; x.font = "800 30px Archivo";
+    ["Every grade has a say.", "Tell me what you want", "to see at Belmont."]
+      .forEach((t, i) => x.fillText(t, 64, H0 + 320 + i * 40));
+    x.fillStyle = "#b996ff"; x.font = "800 24px Archivo";
+    x.fillText("SCAN WITH YOUR CAMERA  →", 64, H0 + 445);
+    star(x, qx - 60, H0 + 70, 20);
+
+    document.getElementById("flyer").src = c.toDataURL("image/jpeg", 0.92);
+  }
+
+  draw();
+</script>
+</body>
+</html>
