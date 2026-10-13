@@ -26,6 +26,7 @@
     --body: "Archivo", system-ui, -apple-system, sans-serif;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html, body { margin: 0; }
   body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
   a { color: inherit; }
@@ -59,7 +60,29 @@
   p { max-width: 62ch; margin: 0 0 14px; }
 
   .ideas .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 14px; counter-reset: s; }
+
+  .card { background: var(--ink); color: var(--white); border-radius: 18px; padding: 26px; box-shadow: 8px 8px 0 var(--purple); border: 3px solid var(--ink); }
+  .card-title { font-family: var(--script); font-size: 44px; line-height: 1; color: var(--lilac); margin: 0 0 18px; }
+  fieldset { border: 0; padding: 0; margin: 0 0 20px; }
+  legend, .field-label { display: block; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: #d9d2e6; margin-bottom: 10px; padding: 0; }
+  .grades { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .hero .wrap > *, .ideas .wrap > *, .flyer .wrap > * { min-width: 0; }
+  .grades label { position: relative; cursor: pointer; }
+  .grades input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .grades span { display: block; text-align: center; font-family: var(--display); font-size: 22px; padding: 12px 0; border: 2px solid #4a3f5e; border-radius: 10px; color: var(--white); transition: background .15s, border-color .15s; }
+  .grades input:checked + span { background: var(--lilac); border-color: var(--lilac); color: var(--ink); }
+  .grades input:focus-visible + span { outline: 3px solid var(--white); outline-offset: 2px; }
+  textarea { width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--white); border: 2px solid var(--white); border-radius: 10px; padding: 12px 14px; resize: vertical; min-height: 130px; }
+  textarea:focus { outline: none; border-color: var(--lilac); box-shadow: 0 0 0 3px rgba(185,150,255,.45); }
+  .submit { width: 100%; margin-top: 16px; cursor: pointer; font-size: 22px; }
+  .submit[disabled] { opacity: .6; cursor: wait; }
+  .error { color: #ffb3c7; font-weight: 600; margin: 12px 0 0; }
+  .fine { color: #9d92b3; font-size: 13px; margin: 10px 0 0; text-align: center; max-width: none; }
+  .thanks { text-align: center; padding-block: 20px; }
+  .thanks-big { font-family: var(--display); font-size: 64px; line-height: 1; text-transform: uppercase; color: var(--lilac); margin: 0 0 12px; max-width: none; }
+  .thanks p { margin-inline: auto; color: #d9d2e6; }
+  .thanks .btn { margin-top: 10px; cursor: pointer; }
   .steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 16px; }
   .steps li::before { content: counter(s); font-family: var(--display); font-size: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--lilac); display: grid; place-items: center; }
   .steps strong { display: block; font-weight: 800; }
@@ -81,7 +104,7 @@
   footer b { color: var(--lilac); font-family: var(--script); font-weight: 400; font-size: 20px; }
 
   @media (max-width: 760px) {
-    .hero .wrap, .ideas .wrap, .flyer .wrap { grid-template-columns: 1fr; gap: 28px; }
+    .hero .wrap, .ideas .wrap, .flyer .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
     .hero { padding-block: 28px 40px; }
     section { padding-block: 44px; }
   }
@@ -106,7 +129,7 @@
       </h1>
       <p class="slogan">Your Voice, Your Choice, Your School.</p>
       <div class="actions">
-        <a class="btn" id="idea-btn" href="#" target="_blank" rel="noopener">Share your idea</a>
+        <a class="btn" href="#ideas">Share your idea</a>
         <a class="btn ghost" href="#vote">Vote Oct 29</a>
       </div>
     </div>
@@ -115,18 +138,47 @@
 </header>
 
 <main>
-  <section class="ideas">
+  <section class="ideas" id="ideas">
     <div class="wrap">
       <div>
         <h2>Your ideas <span>come first</span></h2>
         <p>I want to hear from every grade before I make any promises. Tell me what you want to see at Belmont, big or small.</p>
         <p>I'll bring your ideas to the school to find out what we can really make happen, so every promise I make is one I can keep.</p>
+        <ol class="steps">
+          <li><div><strong>You share an idea</strong><span>Fill out the form. It takes about a minute.</span></div></li>
+          <li><div><strong>I bring it to the school</strong><span>Ideas from every grade get looked at together.</span></div></li>
+          <li><div><strong>We go after what's possible</strong><span>Real plans instead of empty promises.</span></div></li>
+        </ol>
       </div>
-      <ol class="steps">
-        <li><div><strong>You share an idea</strong><span>Fill out the short form. It takes about a minute.</span></div></li>
-        <li><div><strong>I bring it to the school</strong><span>Ideas from every grade get looked at together.</span></div></li>
-        <li><div><strong>We go after what's possible</strong><span>Real plans instead of empty promises.</span></div></li>
-      </ol>
+
+      <div class="card">
+        <form id="idea-form" novalidate>
+          <p class="card-title">Drop your idea</p>
+
+          <fieldset>
+            <legend>What grade are you in?</legend>
+            <div class="grades">
+              <label><input type="radio" name="grade" id="g9" value="9th"><span>9th</span></label>
+              <label><input type="radio" name="grade" id="g10" value="10th"><span>10th</span></label>
+              <label><input type="radio" name="grade" id="g11" value="11th"><span>11th</span></label>
+              <label><input type="radio" name="grade" id="g12" value="12th"><span>12th</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field-label" for="idea">Your idea</label>
+          <textarea id="idea" name="idea" rows="5" maxlength="1500" placeholder="More clubs, better lunch, a spirit week, a school trip... tell me anything."></textarea>
+
+          <p class="error" id="form-error" role="alert" hidden></p>
+          <button class="btn submit" type="submit" id="submit-btn">Send my idea</button>
+          <p class="fine">Anonymous. No name or sign-in needed.</p>
+        </form>
+
+        <div class="thanks" id="thanks" hidden>
+          <p class="thanks-big">Got it!</p>
+          <p>Thank you for sharing. Your idea is going on the list I bring to the school.</p>
+          <button class="btn" type="button" id="again-btn">Share another idea</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -134,10 +186,10 @@
     <div class="wrap">
       <div>
         <h2>Got ideas? <span>Scan it.</span></h2>
-        <p>Scan the QR code with your phone camera to open the idea form, or tap the button.</p>
+        <p>Scan the QR code with your phone camera to share an idea from anywhere.</p>
         <p>Share the flyer with your friends so every grade gets a say.</p>
         <div class="actions">
-          <a class="btn" id="idea-btn-2" href="#" target="_blank" rel="noopener">Open the form</a>
+          <a class="btn" href="#ideas">Share your idea</a>
         </div>
       </div>
       <img id="flyer-qr" src="flyer.jpg" alt="Campaign flyer with a QR code to share your ideas.">
@@ -167,8 +219,53 @@
 <script>
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSejfcUe8Sh3D1j2tmClyxqVa8H0D5NUF0JjXzFsCB_S6RLrlA/viewform";
 
-  document.getElementById("idea-btn").href = FORM_URL;
-  document.getElementById("idea-btn-2").href = FORM_URL;
+  const SUBMIT_URL = FORM_URL.replace("/viewform", "/formResponse");
+  const ENTRY_IDEA = "entry.592094601";
+  const ENTRY_GRADE = "entry.1969634907";
+
+  const form = document.getElementById("idea-form");
+  const thanks = document.getElementById("thanks");
+  const errorBox = document.getElementById("form-error");
+  const submitBtn = document.getElementById("submit-btn");
+  const ideaBox = document.getElementById("idea");
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.hidden = false;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBox.hidden = true;
+    const grade = form.querySelector('input[name="grade"]:checked');
+    const idea = ideaBox.value.trim();
+    if (!grade) return showError("Pick your grade first.");
+    if (!idea) { ideaBox.focus(); return showError("Write your idea in the box."); }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    const data = new URLSearchParams();
+    data.append(ENTRY_IDEA, idea);
+    data.append(ENTRY_GRADE, grade.value);
+
+    try {
+      await fetch(SUBMIT_URL, { method: "POST", mode: "no-cors", body: data });
+      form.hidden = true;
+      thanks.hidden = false;
+      form.reset();
+    } catch (err) {
+      showError("That didn't send. Check your internet and try again.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send my idea";
+    }
+  });
+
+  document.getElementById("again-btn").addEventListener("click", () => {
+    thanks.hidden = true;
+    form.hidden = false;
+    ideaBox.focus();
+  });
 
   function qr(value, size) {
     return new QRious({ value, size, level: "M", background: "#ffffff", foreground: "#0d0b11", padding: 0 }).canvas;
