@@ -7,7 +7,7 @@ Campaign flyer for Nimatoulaye Sow, Student Council President 2026-2027 at Belmo
 Open `index.html` and replace the link on this line with the real Google Form link:
 
 ```js
-const FORM_URL = "https://forms.gle/PASTE-YOUR-LINK";
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSejfcUe8Sh3D1j2tmClyxqVa8H0D5NUF0JjXzFsCB_S6RLrlA/viewform";
 ```
 
 ## Files
