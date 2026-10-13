@@ -16,11 +16,10 @@
 <style>
   :root {
     --ink: #0d0b11;
-    --paper: #f7f4fc;
     --white: #ffffff;
     --purple: #7b3fe4;
     --lilac: #b996ff;
-    --muted: #5e5470;
+    --soft: #d9d2e6;
     --display: "Anton", "Impact", "Arial Narrow", sans-serif;
     --script: "Yellowtail", "Brush Script MT", cursive;
     --body: "Archivo", system-ui, -apple-system, sans-serif;
@@ -28,132 +27,68 @@
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
   html, body { margin: 0; }
-  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
-  a { color: inherit; }
-  .wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; }
+  body { background: var(--ink); color: var(--white); font-family: var(--body); font-size: 17px; line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; }
+  main { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding-inline: 20px; padding-block: 40px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
+  main > * { min-width: 0; }
+  .photo img { display: block; width: 100%; height: auto; border-radius: 14px; border: 4px solid var(--lilac); }
+  .kicker { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 16px; color: var(--lilac); margin: 0; }
+  h1 { margin: 4px 0 0; font-family: var(--script); font-weight: 400; font-size: clamp(52px, 8vw, 84px); line-height: 1; text-shadow: 3px 3px 0 var(--purple); }
+  .slogan { font-family: var(--script); font-size: clamp(24px, 3.4vw, 32px); color: var(--lilac); margin: 10px 0 28px; }
 
-  /* top strip */
-  .strip { background: var(--ink); color: var(--white); font-family: var(--display); letter-spacing: .06em; text-transform: uppercase; font-size: 15px; }
-  .strip .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 10px; }
-  .strip b { color: var(--lilac); font-weight: 400; }
-
-  /* hero */
-  .hero { background: var(--ink); color: var(--white); padding-block: 40px 56px; border-bottom: 10px solid var(--lilac); }
-  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
-  .kicker { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 18px; color: var(--lilac); margin: 0; }
-  h1 { margin: 6px 0 0; font-weight: 400; line-height: .95; }
-  h1 .name { display: block; font-family: var(--script); font-size: clamp(54px, 9vw, 96px); color: var(--white); text-shadow: 3px 3px 0 var(--purple); }
-  h1 .role { display: block; font-family: var(--display); text-transform: uppercase; font-size: clamp(34px, 5.4vw, 58px); letter-spacing: .01em; margin-top: 10px; }
-  h1 .role span { color: var(--lilac); }
-  .slogan { font-family: var(--script); font-size: clamp(26px, 3.6vw, 36px); color: var(--lilac); margin: 18px 0 26px; }
-  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn { display: inline-block; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 20px; text-decoration: none; padding: 14px 24px; border-radius: 10px; background: var(--lilac); color: var(--ink); border: 3px solid var(--lilac); }
-  .btn.ghost { background: transparent; color: var(--white); border-color: var(--white); }
-  .btn:hover { filter: brightness(1.08); }
-  .btn:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
-  .hero img { width: 100%; height: auto; border-radius: 12px; border: 4px solid var(--lilac); display: block; }
-
-  /* sections */
-  section { padding-block: 56px; }
-  h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(32px, 5vw, 46px); line-height: 1; margin: 0 0 18px; letter-spacing: .01em; text-wrap: balance; }
-  h2 span { color: var(--purple); }
-  p { max-width: 62ch; margin: 0 0 14px; }
-
-  .ideas .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-  .steps { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 14px; counter-reset: s; }
-
-  .card { background: var(--ink); color: var(--white); border-radius: 18px; padding: 26px; box-shadow: 8px 8px 0 var(--purple); border: 3px solid var(--ink); }
-  .card-title { font-family: var(--script); font-size: 44px; line-height: 1; color: var(--lilac); margin: 0 0 18px; }
-  fieldset { border: 0; padding: 0; margin: 0 0 20px; }
-  legend, .field-label { display: block; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: #d9d2e6; margin-bottom: 10px; padding: 0; }
+  .card { background: var(--white); color: var(--ink); border-radius: 16px; padding: 24px; box-shadow: 7px 7px 0 var(--purple); }
+  .card-title { font-family: var(--display); text-transform: uppercase; font-size: 30px; line-height: 1; margin: 0 0 6px; }
+  .card-sub { margin: 0 0 18px; color: #5e5470; }
+  fieldset { border: 0; padding: 0; margin: 0 0 18px; }
+  legend, .field-label { display: block; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: #5e5470; margin-bottom: 8px; padding: 0; }
   .grades { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-  .hero .wrap > *, .ideas .wrap > *, .flyer .wrap > * { min-width: 0; }
   .grades label { position: relative; cursor: pointer; }
   .grades input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-  .grades span { display: block; text-align: center; font-family: var(--display); font-size: 22px; padding: 12px 0; border: 2px solid #4a3f5e; border-radius: 10px; color: var(--white); transition: background .15s, border-color .15s; }
-  .grades input:checked + span { background: var(--lilac); border-color: var(--lilac); color: var(--ink); }
-  .grades input:focus-visible + span { outline: 3px solid var(--white); outline-offset: 2px; }
-  textarea { width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--white); border: 2px solid var(--white); border-radius: 10px; padding: 12px 14px; resize: vertical; min-height: 130px; }
-  textarea:focus { outline: none; border-color: var(--lilac); box-shadow: 0 0 0 3px rgba(185,150,255,.45); }
-  .submit { width: 100%; margin-top: 16px; cursor: pointer; font-size: 22px; }
+  .grades span { display: block; text-align: center; font-family: var(--display); font-size: 20px; padding: 10px 0; border: 2px solid var(--ink); border-radius: 10px; transition: background .15s, color .15s; }
+  .grades input:checked + span { background: var(--ink); color: var(--lilac); }
+  .grades input:focus-visible + span { outline: 3px solid var(--purple); outline-offset: 2px; }
+  textarea { width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: #f7f4fc; border: 2px solid var(--ink); border-radius: 10px; padding: 12px 14px; resize: vertical; min-height: 120px; }
+  textarea:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 3px rgba(123,63,228,.25); }
+  .btn { display: inline-block; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 20px; padding: 13px 22px; border-radius: 10px; border: 0; background: var(--purple); color: var(--white); cursor: pointer; }
+  .btn:hover { filter: brightness(1.1); }
+  .btn:focus-visible { outline: 3px solid var(--lilac); outline-offset: 3px; }
+  .submit { width: 100%; margin-top: 14px; }
   .submit[disabled] { opacity: .6; cursor: wait; }
-  .error { color: #ffb3c7; font-weight: 600; margin: 12px 0 0; }
-  .fine { color: #9d92b3; font-size: 13px; margin: 10px 0 0; text-align: center; max-width: none; }
-  .thanks { text-align: center; padding-block: 20px; }
-  .thanks-big { font-family: var(--display); font-size: 64px; line-height: 1; text-transform: uppercase; color: var(--lilac); margin: 0 0 12px; max-width: none; }
-  .thanks p { margin-inline: auto; color: #d9d2e6; }
-  .thanks .btn { margin-top: 10px; cursor: pointer; }
-  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 16px; }
-  .steps li::before { content: counter(s); font-family: var(--display); font-size: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--lilac); display: grid; place-items: center; }
-  .steps strong { display: block; font-weight: 800; }
-  .steps span { color: var(--muted); font-size: 15px; }
+  .error { color: #c0244e; font-weight: 600; margin: 10px 0 0; }
+  .fine { color: #7d728f; font-size: 13px; margin: 10px 0 0; text-align: center; }
+  .thanks { text-align: center; padding-block: 16px; }
+  .thanks-big { font-family: var(--display); font-size: 56px; line-height: 1; text-transform: uppercase; color: var(--purple); margin: 0 0 10px; }
+  .thanks p { margin: 0 0 14px; }
 
-  .flyer { background: var(--ink); color: var(--white); }
-  .flyer .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: center; }
-  .flyer h2 span { color: var(--lilac); }
-  .flyer p { color: #d9d2e6; }
-  .flyer img { width: 100%; max-width: 440px; height: auto; display: block; border-radius: 10px; justify-self: center; }
-
-  .vote { text-align: left; }
-  .date { display: inline-flex; align-items: baseline; gap: 14px; flex-wrap: wrap; background: var(--white); border: 3px solid var(--ink); border-radius: 14px; padding: 18px 24px; margin-top: 8px; box-shadow: 6px 6px 0 var(--purple); }
-  .date .big { font-family: var(--display); font-size: clamp(44px, 8vw, 72px); line-height: 1; text-transform: uppercase; }
-  .date .small { font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-
-  footer { background: var(--ink); color: #bdb3cf; font-size: 14px; }
-  footer .wrap { padding-block: 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  footer b { color: var(--lilac); font-family: var(--script); font-weight: 400; font-size: 20px; }
+  footer { text-align: center; padding: 18px 20px; color: var(--soft); font-size: 14px; border-top: 6px solid var(--lilac); }
+  footer b { color: var(--lilac); }
 
   @media (max-width: 760px) {
-    .hero .wrap, .ideas .wrap, .flyer .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-    .hero { padding-block: 28px 40px; }
-    section { padding-block: 44px; }
+    main { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 28px; }
+    .photo { order: 2; }
+    .side { display: contents; }
+    .intro { order: 1; }
+    .card { order: 3; }
   }
 </style>
 </head>
 <body>
 
-<div class="strip">
-  <div class="wrap">
-    <span>Belmont Prep Student Council</span>
-    <span>Vote date: <b>Oct 29</b></span>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <div>
-      <p class="kicker">Student Council 2026–2027</p>
-      <h1>
-        <span class="name">Nimatoulaye Sow</span>
-        <span class="role">for <span>President</span></span>
-      </h1>
-      <p class="slogan">Your Voice, Your Choice, Your School.</p>
-      <div class="actions">
-        <a class="btn" href="#ideas">Share your idea</a>
-        <a class="btn ghost" href="#vote">Vote Oct 29</a>
-      </div>
-    </div>
-    <img src="flyer.jpg" alt="Nimatoulaye Sow campaign flyer: Vote me for President 2026-2027.">
-  </div>
-</header>
-
 <main>
-  <section class="ideas" id="ideas">
-    <div class="wrap">
-      <div>
-        <h2>Your ideas <span>come first</span></h2>
-        <p>I want to hear from every grade before I make any promises. Tell me what you want to see at Belmont, big or small.</p>
-        <p>I'll bring your ideas to the school to find out what we can really make happen, so every promise I make is one I can keep.</p>
-        <ol class="steps">
-          <li><div><strong>You share an idea</strong><span>Fill out the form. It takes about a minute.</span></div></li>
-          <li><div><strong>I bring it to the school</strong><span>Ideas from every grade get looked at together.</span></div></li>
-          <li><div><strong>We go after what's possible</strong><span>Real plans instead of empty promises.</span></div></li>
-        </ol>
-      </div>
+  <div class="photo">
+    <img src="flyer.jpg" alt="Nimatoulaye Sow for Student Council President 2026-2027.">
+  </div>
 
-      <div class="card">
+  <div class="side">
+    <div class="intro">
+      <p class="kicker">Student Council President 2026–2027</p>
+      <h1>Nimatoulaye Sow</h1>
+      <p class="slogan">Your Voice, Your Choice, Your School.</p>
+    </div>
+
+    <div class="card" id="ideas">
         <form id="idea-form" novalidate>
-          <p class="card-title">Drop your idea</p>
+          <p class="card-title">Share your idea</p>
+          <p class="card-sub">Tell me what you want to see at Belmont.</p>
 
           <fieldset>
             <legend>What grade are you in?</legend>
@@ -175,47 +110,15 @@
 
         <div class="thanks" id="thanks" hidden>
           <p class="thanks-big">Got it!</p>
-          <p>Thank you for sharing. Your idea is going on the list I bring to the school.</p>
+          <p>Thank you for sharing your idea.</p>
           <button class="btn" type="button" id="again-btn">Share another idea</button>
         </div>
-      </div>
     </div>
-  </section>
-
-  <section class="flyer">
-    <div class="wrap">
-      <div>
-        <h2>Got ideas? <span>Scan it.</span></h2>
-        <p>Scan the QR code with your phone camera to share an idea from anywhere.</p>
-        <p>Share the flyer with your friends so every grade gets a say.</p>
-        <div class="actions">
-          <a class="btn" href="#ideas">Share your idea</a>
-        </div>
-      </div>
-      <img id="flyer-qr" src="flyer.jpg" alt="Campaign flyer with a QR code to share your ideas.">
-    </div>
-  </section>
-
-  <section class="vote" id="vote">
-    <div class="wrap">
-      <h2>Vote <span>Nimatoulaye Sow</span></h2>
-      <p>Student Council President, 2026–2027.</p>
-      <div class="date">
-        <span class="big">Thursday, Oct 29</span>
-        <span class="small">Election day</span>
-      </div>
-    </div>
-  </section>
+  </div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>Nimatoulaye Sow for Student Council President · Belmont Preparatory High School</span>
-    <b>Your Voice, Your Choice, Your School.</b>
-  </div>
-</footer>
+<footer>Vote <b>Thursday, October 29</b> · Belmont Preparatory High School</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <script>
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSejfcUe8Sh3D1j2tmClyxqVa8H0D5NUF0JjXzFsCB_S6RLrlA/viewform";
 
@@ -266,70 +169,6 @@
     form.hidden = false;
     ideaBox.focus();
   });
-
-  function qr(value, size) {
-    return new QRious({ value, size, level: "M", background: "#ffffff", foreground: "#0d0b11", padding: 0 }).canvas;
-  }
-
-  function star(ctx, x, y, r) {
-    ctx.strokeStyle = "#b996ff";
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const a = -Math.PI / 2 + i * 4 * Math.PI / 5;
-      const px = x + r * Math.cos(a), py = y + r * Math.sin(a);
-      i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
-    }
-    ctx.closePath();
-    ctx.stroke();
-  }
-
-  async function drawFlyer() {
-    if (typeof QRious === "undefined") return;
-    const base = new Image();
-    base.src = "flyer.jpg";
-    await base.decode();
-    try {
-      await Promise.all([
-        document.fonts.load("120px Anton"),
-        document.fonts.load("76px Yellowtail"),
-        document.fonts.load("800 30px Archivo"),
-      ]);
-    } catch (e) {}
-
-    const W = 1080, H0 = 1335, band = 470, H = H0 + band;
-    const c = document.createElement("canvas");
-    c.width = W; c.height = H;
-    const x = c.getContext("2d");
-
-    x.drawImage(base, 0, 0, W, H0);
-
-    x.fillStyle = "#0d0b11"; x.fillRect(0, H0, W, band);
-    x.fillStyle = "#b996ff"; x.fillRect(0, H0, W, 8);
-    x.fillStyle = "#7b3fe4"; x.fillRect(0, H0 + 8, W, 4);
-    x.fillStyle = "#b996ff"; x.fillRect(0, H - 10, W, 10);
-
-    const qs = 330, qx = W - qs - 90, qy = H0 + 60;
-    x.fillStyle = "#ffffff";
-    x.beginPath(); x.roundRect(qx - 20, qy - 20, qs + 40, qs + 40, 22); x.fill();
-    x.strokeStyle = "#b996ff"; x.lineWidth = 6; x.stroke();
-    x.drawImage(qr(FORM_URL, qs * 2), qx, qy, qs, qs);
-
-    x.fillStyle = "#ffffff"; x.font = "120px Anton";
-    x.fillText("GOT IDEAS?", 60, H0 + 170);
-    x.fillStyle = "#b996ff"; x.font = "76px Yellowtail";
-    x.fillText("Drop them here", 66, H0 + 255);
-    x.fillStyle = "#ffffff"; x.font = "800 30px Archivo";
-    ["Every grade has a say.", "Tell me what you want", "to see at Belmont."]
-      .forEach((t, i) => x.fillText(t, 64, H0 + 320 + i * 40));
-    x.fillStyle = "#b996ff"; x.font = "800 24px Archivo";
-    x.fillText("SCAN WITH YOUR CAMERA  →", 64, H0 + 445);
-    star(x, qx - 60, H0 + 70, 20);
-
-    document.getElementById("flyer-qr").src = c.toDataURL("image/jpeg", 0.92);
-  }
-
-  drawFlyer();
 </script>
 </body>
 </html>
