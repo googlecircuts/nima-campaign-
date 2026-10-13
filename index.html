@@ -4,22 +4,171 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nimatoulaye Sow for President</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Yellowtail&family=Archivo:wght@800&display=swap">
+<meta name="description" content="Nimatoulaye Sow for Student Council President 2026-2027 at Belmont Preparatory High School. Your Voice, Your Choice, Your School. Vote October 29.">
+<meta property="og:title" content="Nimatoulaye Sow for President">
+<meta property="og:description" content="Your Voice, Your Choice, Your School. Vote October 29.">
+<meta property="og:image" content="flyer.jpg">
+<meta name="theme-color" content="#0d0b11">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d0b11'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23b996ff'%3ENS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Yellowtail&family=Archivo:wght@400;600;800&display=swap">
 <style>
-  html, body { margin: 0; background: #0d0b11; }
-  main { max-width: 540px; margin: 0 auto; padding: 16px; }
-  img { display: block; width: 100%; height: auto; }
+  :root {
+    --ink: #0d0b11;
+    --paper: #f7f4fc;
+    --white: #ffffff;
+    --purple: #7b3fe4;
+    --lilac: #b996ff;
+    --muted: #5e5470;
+    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+    --script: "Yellowtail", "Brush Script MT", cursive;
+    --body: "Archivo", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+  a { color: inherit; }
+  .wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; }
+
+  /* top strip */
+  .strip { background: var(--ink); color: var(--white); font-family: var(--display); letter-spacing: .06em; text-transform: uppercase; font-size: 15px; }
+  .strip .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 10px; }
+  .strip b { color: var(--lilac); font-weight: 400; }
+
+  /* hero */
+  .hero { background: var(--ink); color: var(--white); padding-block: 40px 56px; border-bottom: 10px solid var(--lilac); }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .kicker { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 18px; color: var(--lilac); margin: 0; }
+  h1 { margin: 6px 0 0; font-weight: 400; line-height: .95; }
+  h1 .name { display: block; font-family: var(--script); font-size: clamp(54px, 9vw, 96px); color: var(--white); text-shadow: 3px 3px 0 var(--purple); }
+  h1 .role { display: block; font-family: var(--display); text-transform: uppercase; font-size: clamp(34px, 5.4vw, 58px); letter-spacing: .01em; margin-top: 10px; }
+  h1 .role span { color: var(--lilac); }
+  .slogan { font-family: var(--script); font-size: clamp(26px, 3.6vw, 36px); color: var(--lilac); margin: 18px 0 26px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-block; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 20px; text-decoration: none; padding: 14px 24px; border-radius: 10px; background: var(--lilac); color: var(--ink); border: 3px solid var(--lilac); }
+  .btn.ghost { background: transparent; color: var(--white); border-color: var(--white); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+  .hero img { width: 100%; height: auto; border-radius: 12px; border: 4px solid var(--lilac); display: block; }
+
+  /* sections */
+  section { padding-block: 56px; }
+  h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(32px, 5vw, 46px); line-height: 1; margin: 0 0 18px; letter-spacing: .01em; text-wrap: balance; }
+  h2 span { color: var(--purple); }
+  p { max-width: 62ch; margin: 0 0 14px; }
+
+  .ideas .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 16px; }
+  .steps li::before { content: counter(s); font-family: var(--display); font-size: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--lilac); display: grid; place-items: center; }
+  .steps strong { display: block; font-weight: 800; }
+  .steps span { color: var(--muted); font-size: 15px; }
+
+  .flyer { background: var(--ink); color: var(--white); }
+  .flyer .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: center; }
+  .flyer h2 span { color: var(--lilac); }
+  .flyer p { color: #d9d2e6; }
+  .flyer img { width: 100%; max-width: 440px; height: auto; display: block; border-radius: 10px; justify-self: center; }
+
+  .vote { text-align: left; }
+  .date { display: inline-flex; align-items: baseline; gap: 14px; flex-wrap: wrap; background: var(--white); border: 3px solid var(--ink); border-radius: 14px; padding: 18px 24px; margin-top: 8px; box-shadow: 6px 6px 0 var(--purple); }
+  .date .big { font-family: var(--display); font-size: clamp(44px, 8vw, 72px); line-height: 1; text-transform: uppercase; }
+  .date .small { font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+
+  footer { background: var(--ink); color: #bdb3cf; font-size: 14px; }
+  footer .wrap { padding-block: 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer b { color: var(--lilac); font-family: var(--script); font-weight: 400; font-size: 20px; }
+
+  @media (max-width: 760px) {
+    .hero .wrap, .ideas .wrap, .flyer .wrap { grid-template-columns: 1fr; gap: 28px; }
+    .hero { padding-block: 28px 40px; }
+    section { padding-block: 44px; }
+  }
 </style>
 </head>
 <body>
+
+<div class="strip">
+  <div class="wrap">
+    <span>Belmont Prep Student Council</span>
+    <span>Vote date: <b>Oct 29</b></span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="kicker">Student Council 2026–2027</p>
+      <h1>
+        <span class="name">Nimatoulaye Sow</span>
+        <span class="role">for <span>President</span></span>
+      </h1>
+      <p class="slogan">Your Voice, Your Choice, Your School.</p>
+      <div class="actions">
+        <a class="btn" id="idea-btn" href="#" target="_blank" rel="noopener">Share your idea</a>
+        <a class="btn ghost" href="#vote">Vote Oct 29</a>
+      </div>
+    </div>
+    <img src="flyer.jpg" alt="Nimatoulaye Sow campaign flyer: Vote me for President 2026-2027.">
+  </div>
+</header>
+
 <main>
-  <img id="flyer" alt="Nimatoulaye Sow for Student Council President. Scan the QR code to share your ideas.">
+  <section class="ideas">
+    <div class="wrap">
+      <div>
+        <h2>Your ideas <span>come first</span></h2>
+        <p>I want to hear from every grade before I make any promises. Tell me what you want to see at Belmont, big or small.</p>
+        <p>I'll bring your ideas to the school to find out what we can really make happen, so every promise I make is one I can keep.</p>
+      </div>
+      <ol class="steps">
+        <li><div><strong>You share an idea</strong><span>Fill out the short form. It takes about a minute.</span></div></li>
+        <li><div><strong>I bring it to the school</strong><span>Ideas from every grade get looked at together.</span></div></li>
+        <li><div><strong>We go after what's possible</strong><span>Real plans instead of empty promises.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="flyer">
+    <div class="wrap">
+      <div>
+        <h2>Got ideas? <span>Scan it.</span></h2>
+        <p>Scan the QR code with your phone camera to open the idea form, or tap the button.</p>
+        <p>Share the flyer with your friends so every grade gets a say.</p>
+        <div class="actions">
+          <a class="btn" id="idea-btn-2" href="#" target="_blank" rel="noopener">Open the form</a>
+        </div>
+      </div>
+      <img id="flyer-qr" src="flyer.jpg" alt="Campaign flyer with a QR code to share your ideas.">
+    </div>
+  </section>
+
+  <section class="vote" id="vote">
+    <div class="wrap">
+      <h2>Vote <span>Nimatoulaye Sow</span></h2>
+      <p>Student Council President, 2026–2027.</p>
+      <div class="date">
+        <span class="big">Thursday, Oct 29</span>
+        <span class="small">Election day</span>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>Nimatoulaye Sow for Student Council President · Belmont Preparatory High School</span>
+    <b>Your Voice, Your Choice, Your School.</b>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <script>
-  // Paste the Google Form link here
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSejfcUe8Sh3D1j2tmClyxqVa8H0D5NUF0JjXzFsCB_S6RLrlA/viewform";
+
+  document.getElementById("idea-btn").href = FORM_URL;
+  document.getElementById("idea-btn-2").href = FORM_URL;
 
   function qr(value, size) {
     return new QRious({ value, size, level: "M", background: "#ffffff", foreground: "#0d0b11", padding: 0 }).canvas;
@@ -38,7 +187,8 @@
     ctx.stroke();
   }
 
-  async function draw() {
+  async function drawFlyer() {
+    if (typeof QRious === "undefined") return;
     const base = new Image();
     base.src = "flyer.jpg";
     await base.decode();
@@ -55,23 +205,19 @@
     c.width = W; c.height = H;
     const x = c.getContext("2d");
 
-    // original flyer
     x.drawImage(base, 0, 0, W, H0);
 
-    // bottom strip
     x.fillStyle = "#0d0b11"; x.fillRect(0, H0, W, band);
     x.fillStyle = "#b996ff"; x.fillRect(0, H0, W, 8);
     x.fillStyle = "#7b3fe4"; x.fillRect(0, H0 + 8, W, 4);
     x.fillStyle = "#b996ff"; x.fillRect(0, H - 10, W, 10);
 
-    // QR code
     const qs = 330, qx = W - qs - 90, qy = H0 + 60;
     x.fillStyle = "#ffffff";
     x.beginPath(); x.roundRect(qx - 20, qy - 20, qs + 40, qs + 40, 22); x.fill();
     x.strokeStyle = "#b996ff"; x.lineWidth = 6; x.stroke();
     x.drawImage(qr(FORM_URL, qs * 2), qx, qy, qs, qs);
 
-    // text
     x.fillStyle = "#ffffff"; x.font = "120px Anton";
     x.fillText("GOT IDEAS?", 60, H0 + 170);
     x.fillStyle = "#b996ff"; x.font = "76px Yellowtail";
@@ -83,10 +229,10 @@
     x.fillText("SCAN WITH YOUR CAMERA  →", 64, H0 + 445);
     star(x, qx - 60, H0 + 70, 20);
 
-    document.getElementById("flyer").src = c.toDataURL("image/jpeg", 0.92);
+    document.getElementById("flyer-qr").src = c.toDataURL("image/jpeg", 0.92);
   }
 
-  draw();
+  drawFlyer();
 </script>
 </body>
 </html>
